@@ -15,6 +15,9 @@ namespace PirisWebApp.Models.Database
             Database.EnsureCreated();
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<BankClient> Clients { get; set; }
+        public DbSet<City> Cites { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        
     }
 }

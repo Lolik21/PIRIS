@@ -1,10 +1,17 @@
-﻿
+﻿@using PirisWebApp.Models.Enums
+
 @{
     ViewData["Title"] = "AddNewUser";
 }
 
-<h2>AddNewUser</h2>
+
+
 <form method="post">
+    <div class="row" style="text-align: center;">
+        <div class="col-md-12" style="display: table;">
+                <h2>Add Bank Client</h2>
+        </div>
+    </div>
     <hr class="colorgraph">
     <div class="row" style="margin-top:20px;">
         <div class="col-md-6" style="display: table;">
@@ -17,7 +24,7 @@
         </div>
         <div class="col-md-6" style="display: table;">
             <div style="display: table-cell; width: 30%; float: left; vertical-align: middle;">
-                <h4>Password</h4>
+                <h4>Last name</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
                 <input type="text" name="Password" class="form-control input-lg">
@@ -116,11 +123,7 @@
                 <h4>City of actual address</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <select class="form-control" name="CityOfActualAddress">
-                    <option value="MX">Mexico</option>
-                    <option selected="selected" value="CA">Canada</option>
-                    <option value="US">USA</option>
-                </select>
+                @Html.DropDownList("PlaceOfLivingId", (SelectList)ViewBag.PlaceOfLiving, new { @class="form-control" })
             </div>
         </div>
     </div>
@@ -188,11 +191,7 @@
                 <h4>The city of residence</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <select class="form-control" name="TheCityOfResidence">
-                    <option value="MX">Mexico</option>
-                    <option selected="selected" value="CA">Canada</option>
-                    <option value="US">USA</option>
-                </select>
+                @Html.DropDownList("PlaceOfRegistrationId", (SelectList)ViewBag.PlaceOfRegistration, new { @class = "form-control" })
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -211,10 +210,7 @@
                 <h4>The family position</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <select class="form-control" name="TheFamilyPosition">
-                    <option value="Yes">Yes</option>
-                    <option selected="selected" value="No">No</option>
-                </select>
+                @Html.DropDownList("MaritalStatus", Html.GetEnumSelectList<MaritalStatus>(), new { @class = "form-control" })
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -222,11 +218,7 @@
                 <h4>Citizenship</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <select class="form-control" name="Citizenship">
-                    <option value="MX">Mexico</option>
-                    <option selected="selected" value="CA">Canada</option>
-                    <option value="US">USA</option>
-                </select>
+                @Html.DropDownList("CitizenshipId", (SelectList)ViewBag.Citizenship, new { @class = "form-control" })              
             </div>
         </div>
     </div>
@@ -237,10 +229,7 @@
                 <h4>Disability</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <select class="form-control" name="Disability">
-                    <option value="Yes">Yes</option>
-                    <option selected="selected" value="No">No</option>
-                </select>
+                @Html.DropDownList("Disability", Html.GetEnumSelectList<Disability>(), new { @class = "form-control" })
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -282,7 +271,7 @@
         <div class="col-xs-5 col-sm-5 col-md-5">
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2" style="text-align: center;">
-            <input type="submit" class="btn btn-lg btn-success btn-block">
+            <input type="submit" value="Add Client" class="btn btn-lg btn-success btn-block">
         </div>
     </div>
 </form>
