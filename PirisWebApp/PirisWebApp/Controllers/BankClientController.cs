@@ -27,6 +27,19 @@ namespace PirisWebApp.Controllers
             _cityService = cityService;
             _countryService = countryService;
         }
+        
+        [HttpGet]
+        public IActionResult OpenBankClientList()
+        {
+            var client = new BankClient();
+            client.Name = "Kostya";
+            client.LastName = "Shutko";
+            client.Email = "shoker@mail.ru";
+            client.DateOfBirth = DateTime.Now;
+            List<BankClient> clients= new List<BankClient>();
+            clients.Add(client);
+            return View(clients);
+        }
 
         [HttpGet]
         public async Task<IActionResult> AddNewBankClient()
