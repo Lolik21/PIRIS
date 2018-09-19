@@ -29,16 +29,11 @@ namespace PirisWebApp.Controllers
         }
         
         [HttpGet]
-        public IActionResult OpenBankClientList()
+        public async Task<IActionResult> OpenBankClientList()
         {
-            var client = new BankClient();
-            client.Name = "Kostya";
-            client.LastName = "Shutko";
-            client.Email = "shoker@mail.ru";
-            client.DateOfBirth = DateTime.Now;
-            List<BankClient> clients= new List<BankClient>();
-            clients.Add(client);
-            return View(clients);
+            var dbClients = await _bankClientService.GetAllClients();
+            var viewClients = dbClients.Select(client => _mapper.Map<OpenClientViewModel>(client));
+            return View(viewClients);
         }
 
         [HttpGet]
@@ -64,6 +59,11 @@ namespace PirisWebApp.Controllers
             var user = _mapper.Map<BankClient>(model);
             await _bankClientService.AddClientToDatabase(user);
             return "BankClient was successfully added to database";
+        }
+
+        public IActionResult Delete()
+        {
+            throw new NotImplementedException();
         }
     }
 }

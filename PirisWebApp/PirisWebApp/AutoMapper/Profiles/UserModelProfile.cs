@@ -13,6 +13,7 @@ namespace PirisWebApp.AutoMapper.Profiles
         public UserModelProfile()
         {
             CreateMap<BankClientViewModel, BankClient>();
+            CreateMap<BankClient, OpenClientViewModel>();
         }
     }
 }
