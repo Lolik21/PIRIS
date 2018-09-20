@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using DataGenerator;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using PirisWebApp.GeneratorProfiles;
 using PirisWebApp.Models;
 using PirisWebApp.Models.Enums;
 using PirisWebApp.Models.Internal;
@@ -26,6 +28,9 @@ namespace PirisWebApp.Controllers
             _mapper = mapper;
             _cityService = cityService;
             _countryService = countryService;
+            Generator.Default.Configure(c => c
+                .Profile<BankClientProfile>()
+            );
         }
         
         [HttpGet]
@@ -50,7 +55,8 @@ namespace PirisWebApp.Controllers
             ViewBag.PlaceOfLiving = selectedListCurrentCities;
             ViewBag.PlaceOfRegistration = selectedListRegistrationCities;
             ViewBag.Citizenship = selectedListCountries;
-            return View();
+            var model = Generator.Default.Single<BankClientViewModel>();
+            return View(model);
         }
 
         [HttpPost]
@@ -64,6 +70,11 @@ namespace PirisWebApp.Controllers
         public IActionResult Delete()
         {
             throw new NotImplementedException();
+        }
+
+        private void GenerateModel(BankClientViewModel bankClientViewModel)
+        {
+
         }
     }
 }
