@@ -27,6 +27,16 @@ namespace PirisWebApp.Services
             await _dataBaseContext.SaveChangesAsync();
         }
 
+        public void DeleteBankClient(int Id)
+        {
+            var entity =  _dataBaseContext.Clients.FirstOrDefault((e) => e.Id == Id);
+            if (entity != null)
+            {
+                _dataBaseContext.Clients.Remove(entity);
+                _dataBaseContext.SaveChanges();
+            }
+        }
+
         public async Task<List<BankClient>> GetAllClients()
         {
             return await _dataBaseContext.Clients.ToListAsync();

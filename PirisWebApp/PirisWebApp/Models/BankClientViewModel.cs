@@ -36,5 +36,7 @@ namespace PirisWebApp.Models
         public int PlaceOfRegistrationId { get; set; }
         public int PlaceOfLivingId { get; set; }
         public int CitizenshipId { get; set; }
+
+        public List<string> Errors { get; set; }
     }
 }

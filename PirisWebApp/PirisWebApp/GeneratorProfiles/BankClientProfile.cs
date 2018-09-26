@@ -19,15 +19,18 @@ namespace PirisWebApp.GeneratorProfiles
             Property(model => model.IdentificationNumber).DataSource<GuidSource>();
             Property(model => model.IssueDate).DateTimeSource(DateTime.Now - TimeSpan.FromDays(365 * 100), DateTime.Now);
             Property(model => model.MilitaryService).DataSource(new List<string> {"Yes", "No"});
-            Property(model => model.MonthlyIncome).DataSource<DecimalSource>();
+            Property(model => model.MonthlyIncome).DecimalSource(1000, 1000000);
             Property(model => model.PassportNumber).DataSource<GuidSource>();
             Property(model => model.PlaceOfBirth).DataSource<CitySource>();
-            Property(model => model.Sex).DataSource(new List<string> {"Women", "Men"});
+            Property(model => model.Sex).DataSource(new List<string> {"Woman", "Men"});
             Property(model => model.ThePost).DataSource<CompanySource>();
             Property(model => model.TheMobilePhone).DataSource<PhoneSource>();
             Property(model => model.TheTelephoneHome).DataSource<PhoneSource>();
             Property(model => model.TheResidenceAddress).DataSource<CitySource>();
             Property(model => model.ThePlaceOfWork).DataSource<CompanySource>();
+            Property(model => model.Pensioner).DataSource(new List<string> { "Yes", "No" });
+            Property(model => model.IssuedBy).DataSource<CitySource>();
+            Property(model => model.PassportSeries).DataSource<GuidSource>();
         }
     }
 }

@@ -1,15 +1,23 @@
 ﻿@using PirisWebApp.Models.Enums
-
+@model BankClientViewModel
 @{
     ViewData["Title"] = "AddNewUser";
 }
 
+@foreach (var item in Model.Errors)
+{
+    <div class="row" style="text-align: center;">
+        <div class="col-md-12" style="display: table;">
+            <h4>@item</h4>
+        </div>
+    </div>
+}
 
 
 <form method="post">
     <div class="row" style="text-align: center;">
         <div class="col-md-12" style="display: table;">
-                <h2>Add Bank Client</h2>
+            <h2>Add Bank Client</h2>
         </div>
     </div>
     <hr class="colorgraph">
@@ -19,7 +27,7 @@
                 <h4>Name</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <input type="text" name="Name" class="form-control input-lg">
+                <input type="text" value="@Model.Name" name="Name" class="form-control input-lg">
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -27,7 +35,7 @@
                 <h4>Last name</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <input type="text" name="LastName" class="form-control input-lg">
+                <input type="text" value="@Model.LastName" name="LastName" class="form-control input-lg">
             </div>
         </div>
     </div>
@@ -38,7 +46,7 @@
                 <h4>Patronymic</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <input type="text" name="Patronymic" class="form-control input-lg">
+                <input type="text" value="@Model.Patronymic" name="Patronymic" class="form-control input-lg">
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -46,7 +54,7 @@
                 <h4>Date of birth</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <input type="date" name="DateOfBirth" class="form-control">
+                <input type="date" asp-for="DateOfBirth" asp-format="{0:yyyy-MM-dd}" name="DateOfBirth" class="form-control">
             </div>
         </div>
     </div>
@@ -57,8 +65,8 @@
                 <h4>Sex</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <label class="radio-inline" style="margin-right:15px;">@Html.RadioButton("Sex", "Man")Man</label>
-                <label class="radio-inline">@Html.RadioButton("Sex", "Woman")Woman</label>
+                <label class="radio-inline" style="margin-right:15px;">@Html.RadioButtonFor(m => m.Sex, "Man")Man</label>
+                <label class="radio-inline">@Html.RadioButtonFor(m => m.Sex, "Woman")Woman</label>
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -66,7 +74,7 @@
                 <h4>Passport series</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <input type="text" name="PassportSeries" class="form-control input-lg">
+                <input type="text" value="@Model.PassportSeries" name="PassportSeries" class="form-control input-lg">
             </div>
         </div>
     </div>
@@ -77,7 +85,7 @@
                 <h4>Passport number</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <input type="text" name="PassportNumber" class="form-control input-lg">
+                <input type="text" value="@Model.PassportNumber" name="PassportNumber" class="form-control input-lg">
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -85,7 +93,7 @@
                 <h4>Issued by</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <input type="text" name="IssuedBy" class="form-control input-lg">
+                <input type="text" value="@Model.IssuedBy" name="IssuedBy" class="form-control input-lg">
             </div>
         </div>
     </div>
@@ -96,7 +104,7 @@
                 <h4>Issue date</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <input type="date" name="IssueDate" class="form-control">
+                <input type="date" asp-for="IssueDate" asp-format="{0:yyyy-MM-dd}" name="IssueDate" class="form-control">
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -104,7 +112,7 @@
                 <h4>Identification number</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <input type="text" name="IdentificationNumber" class="form-control input-lg">
+                <input type="text" value="@Model.IdentificationNumber" name="IdentificationNumber" class="form-control input-lg">
             </div>
         </div>
     </div>
@@ -115,7 +123,7 @@
                 <h4>Place of birth</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <input type="text" name="PlaceOfBirth" class="form-control input-lg">
+                <input type="text" value="@Model.PlaceOfBirth" name="PlaceOfBirth" class="form-control input-lg">
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -123,7 +131,7 @@
                 <h4>City of actual address</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                @Html.DropDownList("PlaceOfLivingId", (SelectList)ViewBag.PlaceOfLiving, new { @class="form-control" })
+                @Html.DropDownList("PlaceOfLivingId", (SelectList)ViewBag.PlaceOfLiving, new { @class = "form-control" })
             </div>
         </div>
     </div>
@@ -134,7 +142,7 @@
                 <h4>Address the actual residence</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <input type="text" name="AddressTheActualResidence" class="form-control input-lg">
+                <input type="text" value="@Model.AddressTheActualResidence" name="AddressTheActualResidence" class="form-control input-lg">
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -142,7 +150,7 @@
                 <h4>The telephone home</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <input type="text" name="TheTelephoneHome" class="form-control input-lg">
+                <input type="text" value="@Model.TheTelephoneHome" name="TheTelephoneHome" class="form-control input-lg">
             </div>
         </div>
     </div>
@@ -153,7 +161,7 @@
                 <h4>The mobile phone</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <input type="text" name="TheMobilePhone" class="form-control input-lg">
+                <input type="text" value="@Model.TheMobilePhone" name="TheMobilePhone" class="form-control input-lg">
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -161,7 +169,7 @@
                 <h4>The E-mail</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <input type="text" name="Email" class="form-control input-lg">
+                <input type="text" value="@Model.Email" name="Email" class="form-control input-lg">
             </div>
         </div>
     </div>
@@ -172,7 +180,7 @@
                 <h4>The place of work</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <input type="text" name="ThePlaceOfWork" class="form-control input-lg">
+                <input type="text" value="@Model.ThePlaceOfWork" name="ThePlaceOfWork" class="form-control input-lg">
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -180,7 +188,7 @@
                 <h4>The post</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <input type="text" name="ThePost" class="form-control input-lg">
+                <input type="text" value="@Model.ThePost" name="ThePost" class="form-control input-lg">
             </div>
         </div>
     </div>
@@ -199,7 +207,7 @@
                 <h4>The residence address</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                <input type="text" name="TheResidenceAddress" class="form-control input-lg">
+                <input type="text" value="@Model.TheResidenceAddress" name="TheResidenceAddress" class="form-control input-lg">
             </div>
         </div>
     </div>
@@ -218,7 +226,7 @@
                 <h4>Citizenship</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                @Html.DropDownList("CitizenshipId", (SelectList)ViewBag.Citizenship, new { @class = "form-control" })              
+                @Html.DropDownList("CitizenshipId", (SelectList)ViewBag.Citizenship, new { @class = "form-control" })
             </div>
         </div>
     </div>
@@ -238,8 +246,8 @@
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
                 <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                    <label class="radio-inline" style="margin-right:15px;">@Html.RadioButton("Pensioner", "Yes")Yes</label>
-                    <label class="radio-inline">@Html.RadioButton("Pensioner", "No")No</label>
+                    <label class="radio-inline" style="margin-right:15px;">@Html.RadioButtonFor(m => m.Pensioner, "Yes")Yes</label>
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.Pensioner, "No")No</label>
                 </div>
             </div>
         </div>
@@ -251,7 +259,7 @@
                 <h4>Monthly income</h4>
             </div>
             <div style="display: table-cell; width: 70%; float: left;">
-                <input type="number" min="1" name="MonthlyIncome" class="form-control input-lg">
+                <input type="text" value="@Model.MonthlyIncome" name="MonthlyIncome" class="form-control input-lg">
             </div>
         </div>
         <div class="col-md-6" style="display: table;">
@@ -260,8 +268,8 @@
             </div>
             <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
                 <div style="display: table-cell; width: 70%; float: left; vertical-align: middle;">
-                    <label class="radio-inline" style="margin-right:15px;">@Html.RadioButton("MilitaryService", "Yes")Yes</label>
-                    <label class="radio-inline">@Html.RadioButton("MilitaryService", "No")No</label>
+                    <label class="radio-inline" style="margin-right:15px;">@Html.RadioButtonFor(m => m.MilitaryService, "Yes")Yes</label>
+                    <label class="radio-inline">@Html.RadioButtonFor(m => m.MilitaryService, "No")No</label>
                 </div>
             </div>
         </div>

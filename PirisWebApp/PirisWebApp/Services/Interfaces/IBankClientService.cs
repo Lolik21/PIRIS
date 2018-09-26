@@ -11,5 +11,6 @@ namespace PirisWebApp.Services.Interfaces
         Task AddClientToDatabase(BankClient bankClient);
         Task<List<BankClient>> GetAllClients();
         Task UpdateClientInfo(BankClient bankClient);
+        void DeleteBankClient(int Id);
     }
 }
